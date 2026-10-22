@@ -91,9 +91,15 @@ strong { font-weight: 700; }
 .hero { text-align: center; padding: var(--space-7) 0; }
 .hero h1 { font-size: 40px; line-height: 44px; letter-spacing: -0.015em; margin-top: var(--space-5); }
 .hero .lead { color: var(--ink-muted); max-width: 520px; margin: 0 auto var(--space-6); }
-.globe { position: relative; width: 220px; height: 220px; margin: 0 auto; border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #1E4A3E 0%, #12302A 45%, #0B1B18 75%);
-  box-shadow: 0 0 0 1px rgba(92,143,163,.35), 0 0 48px 8px rgba(92,143,163,.25), inset -24px -24px 48px rgba(0,0,0,.45); }
+/* Tablette et téléphone : cadres sombres arrondis autour des captures, le téléphone posé
+   devant à gauche. La tablette donne la hauteur, le téléphone la chevauche. */
+.devices { position: relative; width: min(100%, 480px); margin: 0 auto; padding-bottom: var(--space-5); }
+.device { background: var(--bg-raised); border: 1px solid var(--line-strong); box-shadow: 0 24px 48px rgba(0,0,0,.5), 0 0 48px 4px rgba(92,143,163,.18); }
+.device img { display: block; width: 100%; height: auto; }
+.tablet { width: 74%; margin-left: auto; padding: var(--space-3); border-radius: var(--radius-xl); }
+.tablet img { border-radius: var(--radius-md); }
+.phone { position: absolute; left: 0; bottom: 0; width: 34%; padding: var(--space-2); border-radius: var(--radius-lg); }
+.phone img { border-radius: var(--radius-md); }
 .globe .firefly { position: absolute; }
 .features { display: grid; gap: var(--space-4); margin: var(--space-6) 0; }
 .feature { display: flex; gap: var(--space-4); align-items: flex-start; }
@@ -107,8 +113,11 @@ strong { font-weight: 700; }
 .foot a { color: var(--ink); }
 
 @media (prefers-reduced-motion: no-preference) {
-  .globe .firefly { animation: glow 3s ease-in-out infinite; }
-  .globe .firefly:nth-child(2) { animation-delay: 1s; }
-  .globe .firefly:nth-child(3) { animation-delay: 2s; }
-  @keyframes glow { 50% { opacity: .55; } }
+  .phone { transition: transform .6s ease; }
+  .devices:hover .phone { transform: translateY(-4px); }
 }
+
+/* Choix de la langue (FR / EN), en haut à droite. */
+.lang { display: flex; gap: var(--space-1); }
+.lang a { display: inline-flex; align-items: center; justify-content: center; min-width: 48px; min-height: 48px; padding: 0 var(--space-2); border-radius: 999px; font: 700 13px/16px var(--body); letter-spacing: .12em; color: var(--ink-muted); text-decoration: none; }
+.lang a[aria-current="true"] { color: var(--on-glow); background: var(--firefly-todo); min-height: 32px; align-self: center; }
